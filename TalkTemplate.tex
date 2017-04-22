@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}       % mit fontenc: Umlaute und ß (sz) direkt eingeben
 \usepackage[T1]{fontenc}          % ^...^
 
-\usepackage{libertine}
+\usepackage{libertine}            % nice open-source font
 \usepackage{color}
 \usepackage{graphicx}
 
@@ -16,17 +16,22 @@
 \usepackage{siunitx}
 \newcommand\unit[2]{\SI{#1}{#2}}
 
-% \usepackage[percent]{overpic}     % draw text atop of pictures
 
+% bool switch to show backup slides
+% if true, only the slides before the "backup" one
+% are counted for number of total slides
 \newif\ifbackup
 \backuptrue
 \backupfalse
 
+
+% powerful graphics package
 \usepackage{tikz}
 \usetikzlibrary{plotmarks,patterns,calc,decorations.markings,arrows,intersections,
 decorations.pathmorphing}
 \tikzset{snake it/.style={decorate, decoration=snake}}
 
+% layer on top of tikz to efficiently draw plots
 \usepackage{pgfplots}
 \usepgflibrary{shapes}
 \usepgfplotslibrary{groupplots}
@@ -40,24 +45,34 @@ decorations.pathmorphing}
 
 % \usepackage{pdfpages}
 
+% \usepackage[percent]{overpic}     % draw text atop of pictures
 
 
 
 
-
+% beamer layout and colours
 \usetheme{Warsaw}
 \useoutertheme{infolines}
 
+\definecolor{darkred}{rgb}{0.5,0,0}
+
 \usecolortheme{rose}                            % invertiert fg/bg von block-titeln
 \usecolortheme{beaver}                          % helles, rotes outercolortheme
-\usecolortheme[rgb={0.5,0,0}]{structure}        % setzt innere fg color auf dunkelrot
+\usecolortheme[named=darkred]{structure}        % setzt innere fg color auf dunkelrot
+
+\setbeamertemplate{section in toc}[circle]
+\setbeamerfont{section number projected}{%
+    family=\rmfamily,series=\bfseries,size=\normalsize}
+\setbeamercolor{section number projected}{bg=white,fg=darkred}
+
 \beamertemplatenavigationsymbolsempty
 
 
 
+% this `put` can be used anywhere
 \def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
 
-
+% ISO conform date format
 \def\mydate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
 
@@ -77,19 +92,13 @@ decorations.pathmorphing}
 \date[\mydate]{Meeting\\\mydate}
 
 
-
 \begin{document}
 
-    \definecolor{darkred}{rgb}{0.5,0,0}
-    \setbeamertemplate{section in toc}[circle]
-    \setbeamerfont{section number projected}{%
-        family=\rmfamily,series=\bfseries,size=\normalsize}
-    \setbeamercolor{section number projected}{bg=white,fg=darkred}
+
 
     \begin{frame}
         \titlepage
     \end{frame}
-
 
 
 
