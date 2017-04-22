@@ -13,16 +13,18 @@
 \usepackage{amssymb}
 \usepackage{mathrsfs}             % calligraphie
 
-\usepackage{siunitx}    
+\usepackage{siunitx}
 \newcommand\unit[2]{\SI{#1}{#2}}
-
-% \usepackage{feynmf}%%%{feynmp}    % Feynman Diagramme
-% \unitlength=1mm
 
 % \usepackage[percent]{overpic}     % draw text atop of pictures
 
-\usepackage{tikz}                 % drawing shapes
-\usetikzlibrary{plotmarks,patterns,calc,decorations.markings,arrows,intersections,decorations.pathmorphing}
+\newif\ifbackup
+\backuptrue
+\backupfalse
+
+\usepackage{tikz}
+\usetikzlibrary{plotmarks,patterns,calc,decorations.markings,arrows,intersections,
+decorations.pathmorphing}
 \tikzset{snake it/.style={decorate, decoration=snake}}
 
 \usepackage{pgfplots}
@@ -60,12 +62,12 @@
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
 
 
-\title[Title]{Title}
+\title[short Title]{Title}
 \subtitle{}
 \author[Tino Michael]{Tino Michael\vspace{-12pt}}
 \institute[CEA Saclay]{CEA Saclay, Irfu/SAp}
 % \institute[CEA]{Commissariat à l'énergie atomique et aux énergies alternatives}
-\titlegraphic{ 
+\titlegraphic{
     \begin{tikzpicture}
         \node (centre) at (0,0)                       {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CEA_2012.png}};
         \node[anchor=west] at ([xshift=-150pt]centre) {\includegraphics[height=40pt]{../Resources/Pictures/Logo_Asterics.png}};
@@ -83,7 +85,7 @@
     \setbeamerfont{section number projected}{%
         family=\rmfamily,series=\bfseries,size=\normalsize}
     \setbeamercolor{section number projected}{bg=white,fg=darkred}
-        
+
     \begin{frame}
         \titlepage
     \end{frame}
@@ -91,6 +93,16 @@
 
 
 
+    \ifbackup
+        \newcounter{finalframe}
+        \setcounter{finalframe}{\value{framenumber}}
 
+        \begin{frame}
+            \centering
+            \Huge Backup\\
+        \end{frame}
+
+        \setcounter{framenumber}{\value{finalframe}}
+    \fi
 
 \end{document}
