@@ -20,9 +20,9 @@
 % bool switch to show backup slides
 % if true, only the slides before the "backup" one
 % are counted for number of total slides
-\newif\ifbackup
-\backuptrue
-\backupfalse
+\newif\ifnobackup
+\nobackupfalse
+\nobackuptrue
 
 
 % powerful graphics package
@@ -84,9 +84,12 @@ decorations.pathmorphing}
 % \institute[CEA]{Commissariat à l'énergie atomique et aux énergies alternatives}
 \titlegraphic{
     \begin{tikzpicture}
-        \node (centre) at (0,0)                       {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CEA_2012.png}};
-        \node[anchor=west] at ([xshift=-150pt]centre) {\includegraphics[height=40pt]{../Resources/Pictures/Logo_Asterics.png}};
-        \node[anchor=east] at ([xshift=+150pt]centre) {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CTA_blue.png}};
+        \node (centre) at (0,0)
+                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CEA_2012.png}};
+        \node[anchor=west] at ([xshift=-150pt]centre)
+                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_Asterics.png}};
+        \node[anchor=east] at ([xshift=+150pt]centre)
+                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CTA_blue.png}};
     \end{tikzpicture}
 }
 \date[\mydate]{Meeting\\\mydate}
@@ -94,24 +97,24 @@ decorations.pathmorphing}
 
 \begin{document}
 
-
-
     \begin{frame}
         \titlepage
     \end{frame}
 
 
-
-    \ifbackup
-        \newcounter{finalframe}
-        \setcounter{finalframe}{\value{framenumber}}
-
-        \begin{frame}
-            \centering
-            \Huge Backup\\
-        \end{frame}
-
-        \setcounter{framenumber}{\value{finalframe}}
+    % if we don't want to show backup slides, end document now
+    \ifnobackup
+        \end{document}
     \fi
+
+    \newcounter{finalframe}
+    \setcounter{finalframe}{\value{framenumber}}
+
+    \begin{frame}
+        \centering
+        \Huge Backup\\
+    \end{frame}
+
+    \setcounter{framenumber}{\value{finalframe}}
 
 \end{document}
