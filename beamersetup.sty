@@ -1,0 +1,73 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamersetup}
+
+\RequirePackage{standardsetup}
+
+
+\RequirePackage{kvoptions}
+
+\DeclareStringOption[Title]{title}
+\DeclareStringOption[short Title]{shorttitle}
+\DeclareStringOption[]{subtitle}
+\DeclareStringOption[Meeting]{meeting}[my Meeting]
+\DeclareStringOption[\mydate]{date}
+
+
+\title[\beamersetup@shorttitle]{\beamersetup@title}
+\subtitle{\beamersetup@subtitle}
+\author[Tino Michael]{Tino Michael\vspace{-12pt}}
+\institute[CEA]{Commissariat à l'énergie atomique et aux énergies alternatives}
+\institute[CEA Saclay]{CEA Saclay, Irfu/SAp}
+\date[\beamersetup@date]{\beamersetup@meeting\\\beamersetup@date}
+
+
+\ProcessKeyvalOptions*
+
+
+% beamer layout and colours
+\usetheme{Warsaw}
+\useoutertheme{infolines}
+
+\usecolortheme{rose}
+\usecolortheme{beaver}
+\usecolortheme[named=darkred]{structure}
+
+\setbeamertemplate{section in toc}[circle]
+\setbeamerfont{section number projected}{%
+    family=\rmfamily,series=\bfseries,size=\normalsize}
+\setbeamercolor{section number projected}{bg=white,fg=darkred}
+
+\beamertemplatenavigationsymbolsempty
+\titlegraphic{
+    \begin{tikzpicture}
+        \node (centre) at (0,0)
+                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CEA_2012.png}};
+        \node[anchor=west] at ([xshift=-150pt]centre)
+                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_Asterics.png}};
+        \node[anchor=east] at ([xshift=+150pt]centre)
+                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CTA_blue.png}};
+    \end{tikzpicture}
+}
+
+
+% \newenvironment{backup}[1][true]
+\usepackage{xstring}
+\newcommand{\backup}[2][true]{%
+    \IfStrEq{#1}{true}{
+        \newcounter{finalframe}
+        \setcounter{finalframe}{\value{framenumber}}
+
+        \begin{frame}
+            \centering
+            \Huge Backup\\
+        \end{frame}
+
+        #2
+
+        \setcounter{framenumber}{\value{finalframe}}
+    }{}
+}%
+
+
+
+\endinput

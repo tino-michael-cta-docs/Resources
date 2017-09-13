@@ -1,98 +1,6 @@
 \documentclass[8pt]{beamer}
 
-\usepackage[utf8]{inputenc}       % mit fontenc: Umlaute und ß (sz) direkt eingeben
-\usepackage[T1]{fontenc}          % ^...^
-
-\usepackage{libertine}            % nice open-source font
-\usepackage{color}
-\usepackage{graphicx}
-
-\usepackage{booktabs}             % table decorations
-
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathrsfs}             % calligraphie
-
-\usepackage{siunitx}
-\newcommand\unit[2]{\SI{#1}{#2}}
-
-
-% bool switch to show backup slides
-% if true, only the slides before the "backup" one
-% are counted for number of total slides
-\newif\ifnobackup
-\nobackupfalse
-\nobackuptrue
-
-
-% powerful graphics package
-\usepackage{tikz}
-\usetikzlibrary{plotmarks,patterns,calc,decorations.markings,arrows,intersections,
-decorations.pathmorphing}
-\tikzset{snake it/.style={decorate, decoration=snake}}
-
-% layer on top of tikz to efficiently draw plots
-\usepackage{pgfplots}
-\usepgflibrary{shapes}
-\usepgfplotslibrary{groupplots}
-\pgfplotsset{compat=newest}
-\newlength{\figurewidth}
-\setlength{\figurewidth}{6cm}
-\newlength{\figureheight}
-\setlength{\figureheight}{5cm}
-
-% \usepackage{pgffor}               % for-loop
-
-% \usepackage{pdfpages}
-
-% \usepackage[percent]{overpic}     % draw text atop of pictures
-
-
-
-
-% beamer layout and colours
-\usetheme{Warsaw}
-\useoutertheme{infolines}
-
-\definecolor{darkred}{rgb}{0.5,0,0}
-
-\usecolortheme{rose}                            % invertiert fg/bg von block-titeln
-\usecolortheme{beaver}                          % helles, rotes outercolortheme
-\usecolortheme[named=darkred]{structure}        % setzt innere fg color auf dunkelrot
-
-\setbeamertemplate{section in toc}[circle]
-\setbeamerfont{section number projected}{%
-    family=\rmfamily,series=\bfseries,size=\normalsize}
-\setbeamercolor{section number projected}{bg=white,fg=darkred}
-
-\beamertemplatenavigationsymbolsempty
-
-
-
-% this `put` can be used anywhere
-\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
-
-% ISO conform date format
-\def\mydate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
-\def\twodigits#1{\ifnum#1<10 0\fi\the#1}
-
-
-\title[short Title]{Title}
-\subtitle{}
-\author[Tino Michael]{Tino Michael\vspace{-12pt}}
-\institute[CEA Saclay]{CEA Saclay, Irfu/SAp}
-% \institute[CEA]{Commissariat à l'énergie atomique et aux énergies alternatives}
-\titlegraphic{
-    \begin{tikzpicture}
-        \node (centre) at (0,0)
-                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CEA_2012.png}};
-        \node[anchor=west] at ([xshift=-150pt]centre)
-                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_Asterics.png}};
-        \node[anchor=east] at ([xshift=+150pt]centre)
-                {\includegraphics[height=40pt]{../Resources/Pictures/Logo_CTA_blue.png}};
-    \end{tikzpicture}
-}
-\date[\mydate]{Meeting\\\mydate}
+\usepackage{beamersetup}
 
 
 \begin{document}
@@ -101,20 +9,10 @@ decorations.pathmorphing}
         \titlepage
     \end{frame}
 
-
-    % if we don't want to show backup slides, end document now
-    \ifnobackup
-        \end{document}
-    \fi
-
-    \newcounter{finalframe}
-    \setcounter{finalframe}{\value{framenumber}}
-
-    \begin{frame}
-        \centering
-        \Huge Backup\\
-    \end{frame}
-
-    \setcounter{framenumber}{\value{finalframe}}
+    \backup[hide]{
+        \frame{
+            not shown
+        }
+    }
 
 \end{document}
