@@ -4,16 +4,16 @@
     \usepackage{polyglossia}
     \setmainlanguage{english}
     \usepackage{fontspec}
-%     \setmainfont{linlibertine}
-    \usepackage{libertine}
+    \setmainfont{linuxlibertine}
 
     \usepackage[]{unicode-math}
-    \setmathfont{linuxlibertine}
+    % \setmathfont{linuxlibertine}
 
 \else
     \usepackage[utf8]{inputenc}
     \usepackage[T1]{fontenc}
     \usepackage{libertine}
+    \usepackage[english]{babel}
 \fi
 
 
@@ -46,6 +46,11 @@
 \usepgfplotslibrary{groupplots}
 \pgfplotsset{compat=newest}
 
+\newlength\figureheight
+\newlength\figurewidth
+\setlength\figureheight{8cm}
+\setlength\figurewidth{10cm}
+
 
 % \usepackage{pgffor}               % for-loop
 
@@ -61,4 +66,3 @@
 % ISO conform date format
 \def\mydate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}
 \def\twodigits#1{\ifnum#1<10 0\fi\the#1}
-
